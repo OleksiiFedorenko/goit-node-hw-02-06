@@ -1,31 +1,66 @@
-## GoIT Node.js Course Template Homework
+## Contacts Management
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+## Homework task definitions
 
-Додайте ментора до колаборації
+- [Homework 02](#homework-02)
+- [Homework 03](#homework-03)
+- [Homework 04](#homework-04)
+- [Homework 05](#homework-05)
+- [Homework 06](#homework-06)
 
-Для кожної домашньої роботи створюйте свою гілку.
+## Homework 02: Express/REST API
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+The task is to create a REST API web server using Express. It should support
+following routes:
 
-Кожна нова гілка для др повинна робитися з master
+### GET /api/contacts
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
+- Does not receive anything
+- Returns an array of all contacts in JSON format with a status code of 200
 
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
+### GET /api/contacts/:id
 
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
+- Does not receive a body
+- Receives the "id" parameter
+- If the specified "id" exists, returns the contact object in JSON format with a
+  status code of 200
+- If the specified "id" does not exist, returns a JSON object with the key
+  "message": "Not found" and a status code of 404
 
-### Команди:
+### POST /api/contacts
 
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+- Receives the body in the format {name, email, phone} (all fields are required)
+- If any required fields are missing in the body, returns a JSON object with the
+  key "message": "missing required name field" and a status code of 400
+- If all fields are present in the body, adds a unique identifier to the contact
+  object
+- Returns an object with the added id, name, email, and phone fields and a
+  status code of 201
+
+### PUT /api/contacts/:id
+
+- Receives the id parameter
+- Receives the body in JSON format with the updated fields name, email, and
+  phone
+- If the body is missing, returns a JSON object with the key "message": "missing
+  fields" and a status code of 400
+- If the contact with the specified id is not found, returns a JSON object with
+  the key "message": "Not found" and a status code of 404
+- Returns the updated contact object and a status code of 200
+
+### DELETE /api/contacts/:id
+
+- Does not receive a body
+- Receives the id parameter
+- If the specified id does not exist, returns a JSON object with the key
+  "message": "Not found" and a status code of 404
+- If the specified id exists, returns the removed contact object and a status
+  code of 200
+
+## Homework 03: MongoDB/Mongoose
+
+## Homework 04: Authentification
+
+## Homework 05: Images/texting
+
+## Homework 06: Websockets
