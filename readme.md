@@ -2,13 +2,13 @@
 
 ## Homework task definitions
 
-- [Homework 02](#hw02)
-- [Homework 03](#hw03)
-- [Homework 04](#hw04)
-- [Homework 05](#hw05)
-- [Homework 06](#hw06)
+- [Homework 02](#homework-02-expressrest-api)
+- [Homework 03](#homework-03-mongodbmongoose)
+- [Homework 04](#homework-04-authentification)
+- [Homework 05](#homework-05-imagestexting)
+- [Homework 06](#homework-06-websockets)
 
-## <a name="hw02">Homework 02: Express/REST API</a>
+## Homework 02: Express/REST API
 
 The task is to create a REST API web server using **Express**, **Morgan**, and
 **Cors**. We use a JSON file to emulate a database. For the validation of input
@@ -58,7 +58,7 @@ data use **Joi**. It should support following routes:
 - If the specified id exists, returns the removed contact object and a status
   code of 200
 
-## <a name="hw03">Homework 03: MongoDB/Mongoose</a>
+## Homework 03: MongoDB/Mongoose
 
 The task is to create a MongoDB database and refactor the code using Mongoose.
 The process can be divided into 5 steps:
