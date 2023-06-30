@@ -1,6 +1,17 @@
-## Contacts Management
+# Contacts Management
 
-## Homework task definitions
+The goal is to learn how to create fully complete backend part for contact
+management aplication based on **Node.js**. The task is divided into 6
+parts(homeworks):
+
+- First part is a separate CLI application which can be found
+  <a href="https://github.com/OleksiiFedorenko/goit-node-hw-01">here</a>.
+- The remaining parts (2-6) are described below and created as branches in
+  current repo. After approval from mentor they are being merged to master
+  branch, but are not being deleted. Each of the next homework is based on a
+  previous one.
+
+## Homework 2-6 links:
 
 - [Homework 02](#homework-02-expressrest-api)
 - [Homework 03](#homework-03-mongodbmongoose)
