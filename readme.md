@@ -1,17 +1,29 @@
-## Contacts Management
+# Contacts Management
 
-## Homework task definitions
+The goal is to learn how to create fully complete backend part for contact
+management aplication based on **Node.js**. The task is divided into 6
+parts(homeworks):
 
-- [Homework 02](#homework-02)
-- [Homework 03](#homework-03)
-- [Homework 04](#homework-04)
-- [Homework 05](#homework-05)
-- [Homework 06](#homework-06)
+- First part is a separate CLI application which can be found
+  <a href="https://github.com/OleksiiFedorenko/goit-node-hw-01">here</a>.
+- The remaining parts (2-6) are described below and created as branches in
+  current repo. After approval from mentor they are being merged to master
+  branch, but are not being deleted. Each of the next homework is based on a
+  previous one.
+
+## Homework 2-6 links:
+
+- [Homework 02](#homework-02-expressrest-api)
+- [Homework 03](#homework-03-mongodbmongoose)
+- [Homework 04](#homework-04-authentification)
+- [Homework 05](#homework-05-imagestexting)
+- [Homework 06](#homework-06-websockets)
 
 ## Homework 02: Express/REST API
 
-The task is to create a REST API web server using Express. It should support
-following routes:
+The task is to create a REST API web server using **Express**, **Morgan**, and
+**Cors**. We use a JSON file to emulate a database. For the validation of input
+data use **Joi**. It should support following routes:
 
 ### GET /api/contacts
 
@@ -58,6 +70,54 @@ following routes:
   code of 200
 
 ## Homework 03: MongoDB/Mongoose
+
+The task is to create a MongoDB database and refactor the code using Mongoose.
+The process can be divided into 5 steps:
+
+### Step 1: MongoDB Atlas Account Setup
+
+1. Create an account on MongoDB Atlas.
+2. Create a new project and configure a free cluster.
+3. Create a user with administrator privileges.
+
+### Step 2: Install MongoDB Compass
+
+1. Install MongoDB Compass, a graphical editor for MongoDB.
+2. Configure the connection to your cloud database in MongoDB Atlas.
+
+### Step 3: Create and Populate the Database
+
+1. Use MongoDB Compass to create a database named **'db-contacts'**.
+2. Within the **'db-contacts'** database, create a collection named
+   **'contacts'**.
+3. Import the JSON data into the **'contacts'** collection using MongoDB
+   Compass.
+
+### Step 4: Connect to MongoDB with Mongoose
+
+1. Replace the storage of contacts from a JSON file to the MongoDB database you
+   created.
+2. Write code to establish a connection to MongoDB using Mongoose.
+3. Upon successful connection, print the message "Database connection
+   successful" to the console.
+4. Handle connection errors. Print the error message to the console and exit the
+   process using **'process.exit(1)'**.
+
+### Step 5: Update Contact Status
+
+1. Implement a new route for updating the favorite status of a contact.
+2. Endpoint: **'PATCH /api/contacts/:id/favorite'**
+3. Accepts the **'id'** parameter.
+4. Accepts the **'favorite'** field in the request body as a JSON format for
+   updating the **'favorite'** field of the contact.
+5. If the request body is missing the **'favorite'** field, return a JSON
+   response with the key **'"message": "missing field favorite"'** and status
+   code 400.
+6. If the request is successful, call the **'updateStatusContact(id, body)'**
+   function (implement it) to update the contact in the database.
+7. Return the updated contact object with a status code of 200. If the contact
+   is not found, return a JSON response with the key **'"message": "Not
+   found"'** and status code **'404'**.
 
 ## Homework 04: Authentification
 
