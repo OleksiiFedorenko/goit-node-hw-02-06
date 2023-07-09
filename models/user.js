@@ -1,8 +1,10 @@
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
+
 const { handleMongooseError } = require('../middlewares');
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const subscriptionTypes = ['starter', 'pro', 'business'];
 
 const userSchema = new Schema(
   {
@@ -14,14 +16,15 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
+      minlength: 6,
       required: [true, 'Set password for user'],
     },
     subscription: {
       type: String,
-      enum: ['starter', 'pro', 'business'],
+      enum: subscriptionTypes,
       default: 'starter',
     },
-    token: String,
+    token: { type: String, default: '' },
   },
   { versionKey: false, timestamps: true }
 );
@@ -35,7 +38,7 @@ const registerSchema = Joi.object({
   password: Joi.string().required().messages({
     'any.required': 'missing field password',
   }),
-  subscription: Joi.string().valid('starter', 'pro', 'business'),
+  subscription: Joi.string().valid(...subscriptionTypes),
 });
 
 const loginSchema = Joi.object({
