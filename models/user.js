@@ -50,7 +50,11 @@ const loginSchema = Joi.object({
   }),
 });
 
-const schemas = { registerSchema, loginSchema };
+const updateSubscriptionSchema = Joi.object({
+  subscription: Joi.string().valid(...subscriptionTypes),
+});
+
+const schemas = { registerSchema, loginSchema, updateSubscriptionSchema };
 
 const User = model('user', userSchema);
 
