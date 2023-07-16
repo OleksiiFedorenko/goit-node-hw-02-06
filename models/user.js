@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
 
-const { handleMongooseError } = require('../helpers');
+const handleMongooseError = require('../helpers/handleMongooseError');
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const subscriptionTypes = ['starter', 'pro', 'business'];
@@ -25,6 +25,10 @@ const userSchema = new Schema(
       default: 'starter',
     },
     token: { type: String, default: '' },
+    avatarURL: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
