@@ -364,3 +364,139 @@ The tests should ensure that:
 - The value for token field has type **'String'**.
 
 ## Homework 06: Websockets
+
+The task is to add feature of email verification for user registration using the
+SendGrid service.
+
+### How Email Verification Works
+
+- After registration, users will receive an email to their provided email
+  address with a verification link.
+- When the user clicks the verification link for the first time, they will
+  receive a response with a status code of 200, indicating successful email
+  verification.
+- If the user clicks the verification link again, they will receive a response
+  with a status code of 404, indicating that the link is no longer valid.
+
+### Step 1: Prepare SendGrid API Integration
+
+1. Sign up for a SendGrid account.
+2. Create an email sender within SendGrid.
+3. Generate an API token and add it to the .env file in your project.
+
+### Step 2: Create an Endpoint for Email Verification
+
+Add the following fields to the User model for email verification:
+
+```
+{
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
+}
+```
+
+Create an endpoint with the path **/users/verify/:verificationToken**, where the
+parameter **'verificationToken'** will be used to find the user in the User
+model.
+
+- If a user with the specified token is not found, return an error with a status
+  code of **404 (Not Found)**.
+- If the user is found, set the **'verificationToken'** to '' and set the verify
+  field to true in the user document, then return a success response with a
+  status code of **200 (OK)**.
+
+Verification Request
+
+```
+GET /auth/verify/:verificationToken
+```
+
+Verification User Not Found
+
+```
+Status: 404 Not Found
+ResponseBody: {
+  "message": "User not found"
+}
+```
+
+Verification Success Response
+
+```
+Status: 200 OK
+ResponseBody: {
+  "message": "Verification successful",
+}
+```
+
+### Step 3: Send Email with Verification Link
+
+During user registration:
+
+1. Generate a **'verificationToken'** for the user and save it in the database
+   (you can use packages like **'uuid'** or **'nanoid'** for generating tokens).
+2. Send an email to the user's provided email address with a verification link
+   (e.g., **/users/verify/:verificationToken**).
+
+Keep in mind that login will not be allowed for users with unverified email
+addresses.
+
+### Step 4: Resend Verification Email
+
+To account for cases where the user may accidentally delete the email or
+encounter any other issues with the email delivery:
+
+Create an endpoint to resend the verification email to the user's email address.
+
+- If the **'email'** field is missing in the request body, return an error with
+  a status code of **400 (Bad Request)** and a JSON response with the message
+  **'missing required field email'**.
+- If the user has already been verified, return a JSON response with the message
+  **'Verification has already been passed'** and a status code of **400 (Bad
+  Request)**.
+- If the request is valid and the user is not verified, resend the verification
+  email and return a success response with a status code of **200 (OK)** and a
+  JSON response with the message **'Verification email sent'**.
+
+Resending a Email Request
+
+```
+POST /users/verify
+Content-Type: application/json
+RequestBody: {
+  "email": "example@example.com"
+}
+```
+
+Resending a Email Validation Error
+
+```
+Status: 400 Bad Request
+ResponseBody: <Error message from Joi or other validation library>
+```
+
+Resending a Email Success Response
+
+```
+Status: 200 OK
+ResponseBody: {
+  "message": "Verification email sent"
+}
+```
+
+Resend Email for Verified User
+
+```
+Status: 400 Bad Request
+ResponseBody: {
+  "message": "Verification has already been passed"
+}
+```
+
+### Additional task is to create dockerfile (not finalized yet)
