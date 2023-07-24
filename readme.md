@@ -17,7 +17,7 @@ parts(homeworks):
 - [Homework 03](#homework-03-mongodbmongoose)
 - [Homework 04](#homework-04-authentification)
 - [Homework 05](#homework-05-image-uploadingtesting)
-- [Homework 06](#homework-06-websockets)
+- [Homework 06](#homework-06-email-verification)
 
 ## Homework 02: Express/REST API
 
@@ -299,7 +299,7 @@ token.
 ['starter', 'pro', 'business'].
 ```
 
-## Homework 05: Image uploading/testing
+## Homework 05: Image Uploading/Testing
 
 The main task is to implement the feature of user avatar uploading using
 **Multer**. Additionally, there is an optional task to create tests for login
@@ -363,7 +363,7 @@ The tests should ensure that:
 - The response contains a **token**.
 - The value for token field has type **'String'**.
 
-## Homework 06: Websockets
+## Homework 06: Email Verification
 
 The task is to add feature of email verification for user registration using the
 SendGrid service.
@@ -499,4 +499,9 @@ ResponseBody: {
 }
 ```
 
-### Additional task is to create dockerfile (not finalized yet)
+### Additional task: create dockerfile
+
+1. Get **Docker** account.
+2. Download and install **Docker Desktop**.
+3. Add **Docker extension** for VS Code.
+4. Create **Dockerfile** in the root of the project.
