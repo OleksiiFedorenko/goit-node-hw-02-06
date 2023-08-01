@@ -16,7 +16,7 @@ describe('login', () => {
     await mongoose
       .connect(DB_TEST_HOST)
       .then(() => {
-        console.log('Database connection successful');
+        console.log('Database connection success');
       })
       .catch(err => {
         console.error(err.message);
